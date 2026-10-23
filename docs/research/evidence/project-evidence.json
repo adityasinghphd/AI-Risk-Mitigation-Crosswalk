@@ -1,0 +1,318 @@
+{
+  "prepared": "2026-10-18",
+  "sources": {
+    "pilot": {
+      "repository_path": "outputs/mitigation-pilot-ai-data-security-20261001/completion.json",
+      "sha256": "603a7cc4fcd2167083099f1937f40c735ded56566dbee3d80b5c70c095648ac3"
+    },
+    "pilot_results": {
+      "repository_path": "outputs/mitigation-pilot-ai-data-security-20261001/results.json",
+      "sha256": "2c16bc79f9ea0ff524d8e65e64a7a7465ce21d20148110f0c21afe70e3fe6199"
+    },
+    "source": {
+      "repository_path": "outputs/mitigation-pilot-ai-data-security-20261001/source-selection.json",
+      "sha256": "0af7f1b41a87eda10eca4dac3f136f072bb75720575c0ccdc92fab0dbee3d8fe"
+    },
+    "linking": {
+      "repository_path": "outputs/mitigation-linking-20261001/completion.json",
+      "sha256": "7fb63f36e8285eff234dee5ccde00ecc1f6b8ca83a7ae98d322ad48aec43ffa4"
+    },
+    "consolidation": {
+      "repository_path": "outputs/mitigation-consolidation-run-20261001/self-repair-20261009/COMPLETION-REPORT.txt",
+      "sha256": "c1646fea91c5c0eba8363721f4b64980713c64bea2811b1d867c626e0f5837b5"
+    }
+  },
+  "pilot_counts": {
+    "source_records": 68,
+    "reviewed_source_records": 68,
+    "substantive_controls": 65,
+    "examples": 1,
+    "grouping_only": 2,
+    "held_source_records": 0,
+    "classification_records_reviewed": 68,
+    "controls_with_type_assignments": 66,
+    "additional_type_assignments": 4,
+    "residual_primary_types": 3,
+    "accepted_risk_links": 85,
+    "controls_with_risk_links": 58,
+    "reviewed_no_supported_target": 8,
+    "blocking_human_questions": 0,
+    "advisory_human_questions": 5
+  },
+  "linking_counts": {
+    "delivered_records": 2094,
+    "new_type_and_link_assessments": 787,
+    "typed_in_scope": 784,
+    "new_type_assignments": 550,
+    "new_type_assignments_excluding_examples": 549,
+    "newly_typed_examples": 1,
+    "types_previously_assigned": 234,
+    "not_applicable_records_in_scope": 3,
+    "no_supported_target_in_scope": 269,
+    "new_risk_links": 668,
+    "all_delivered_risk_links": 2720,
+    "new_residual_type_assignments": 51,
+    "review_corrections_applied_records": 73,
+    "saved_mapping_patches": 8,
+    "open_classification_issues": 0,
+    "deferred_assignments_in_requested_scope": 0
+  },
+  "consolidation": {
+    "source_records_accounted_for": 4532,
+    "human_question_rows": 368,
+    "separate_guidance_question": "MG01",
+    "accepted_distinct_count": null,
+    "verification_scope": "author self-verification of scoped repair; final acceptance pending"
+  },
+  "source_publication": {
+    "title": "AI Data Security: Best Practices for Securing Data Used to Train & Operate AI Systems",
+    "edition": "May 2025 Ver. 1.0",
+    "url": "https://www.ic3.gov/CSA/2025/250522.pdf",
+    "pages": 22
+  },
+  "explorer_records": {
+    "ADS002": {
+      "actor": "AI data collectors/processors",
+      "object": "AI data collected and processed",
+      "force": "contemplated",
+      "scope": "single_control",
+      "level": "L3",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "During collection and processing, consider data minimization as a potential data-security focus area.",
+      "types": [
+        "3.2 · Data Governance"
+      ],
+      "pages": [
+        4
+      ],
+      "links": [],
+      "type_reason": "Data minimization governs collection and processing, matching 3.2 responsible data acquisition/use; it is not a policy governing who may use AI systems (3.3).",
+      "no_link_reason": "A potential data-minimization focus is supported, but the table supplies neither the personal-data conditions of Sensitive Data Entered nor a concrete attack/exfiltration condition. Avoid inventing the intervening exposure scenario.",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": "Should privacy-preserving data-use controls without an identified personal-information harm or adversarial mechanism remain without a risk target? Retain no-supported-target for this document. Types remain supported; no control is discarded."
+    },
+    "ADS020": {
+      "actor": "AI system owners",
+      "object": "Sensitive AI training and development data",
+      "force": "normative",
+      "scope": "option",
+      "level": "L4",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "Implement anonymization or depersonalization techniques to keep sensitive attributes confidential. When possible, use data masking for AI training and development, replacing sensitive data with inauthentic but realistic information retaining dataset value distributions. Practical implementation of privacy techniques may be limited by computational cost.",
+      "types": [
+        "3.2 · Data Governance"
+      ],
+      "pages": [
+        4,
+        7,
+        8,
+        15
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Proximal::Privacy::Exposure of Personal Attributes",
+          "relation": "D",
+          "reason": "Replacing sensitive information with realistic inauthentic values and anonymizing sensitive attributes directly aims to keep those attributes confidential, including the source’s PII example. It remains conditional on feasibility and says nothing about a realized disclosure."
+        }
+      ],
+      "type_reason": "Masking/anonymizing data is responsible data curation and privacy protection, directly within 3.2. It does not establish provenance for AI-generated content (2.4).",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": ""
+    },
+    "ADS021": {
+      "actor": "AI system owners",
+      "object": "Datasets or queries",
+      "force": "contemplated",
+      "scope": "option",
+      "level": "L4",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "When appropriate and possible, differential privacy is a privacy-preserving option using a prespecified privacy budget to govern noise added to data, with tradeoffs between protection against membership inference and target-task accuracy. Practical implementation may be limited by computational cost.",
+      "types": [
+        "2.3 · Model Safety Engineering",
+        "3.2 · Data Governance"
+      ],
+      "pages": [
+        4,
+        8
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Technical::Security Vulnerabilities & Attacks",
+          "relation": "D",
+          "reason": "When appropriate and possible, budgeted noise is intended to reduce membership-inference exploitation of training data. Use the broad security parent because the exact Inference Attack leaf states attribute inference, whereas this source specifically names membership."
+        },
+        {
+          "target_id": "prototype-v0.9.3::Cause::Malfunction::Failure::Poor Model Performance",
+          "relation": "T",
+          "reason": "The source expressly states a privacy-versus-target-task-accuracy tradeoff: the same protection can lower accuracy, a prospective adverse effect matching insufficient intended-task accuracy. It does not assert an observed performance failure."
+        }
+      ],
+      "type_reason": "Primary 2.3: the budgeted-noise method is an explicit technical safeguard against exploiting training-data membership. Additional 3.2: the prescribed privacy budget governs privacy-protecting data use. Neither label asserts adoption, model-value alignment or proven effectiveness.",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": "Does the prototype Inference Attack definition’s “attribute information” include training-data membership inference? The present mapping uses the unambiguous security parent and preserves the separate accuracy trade-off. No risk-link field is unfinished."
+    },
+    "ADS028": {
+      "actor": "Foundation model developers/providers and, for filtering attestations, data curators",
+      "object": "Foundation-model training data, sources and filtering",
+      "force": "normative",
+      "scope": "single_control",
+      "level": "L4",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "When a consumer ingests a foundation model trained by another party, its developers need to be able to provide assurances about training data and sources and certify that no known compromised training data was included. Ideally, curators and providers should attest to filtering methods and provide evidence such as test results.",
+      "types": [
+        "4.2 · Risk Disclosure"
+      ],
+      "pages": [
+        10,
+        13
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Governance::Supply Chain Vulnerability",
+          "relation": "E",
+          "reason": "Provider capability to furnish attestations and evidence enables consumers to assess compromised-data risks in external foundation models. Consumer vetting/acceptance is the intermediate activity; attestation alone is not prevention."
+        }
+      ],
+      "type_reason": "Provider assurances, certifications and ideally filtering-test evidence communicate risk-control claims and evaluations to consumers, matching risk disclosure in 4.2 rather than technical prevention.",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": ""
+    },
+    "ADS030": {
+      "actor": "Data consumers",
+      "object": "Third-party data and foundation models",
+      "force": "contemplated",
+      "scope": "single_control",
+      "level": "L4",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "Before using third-party datasets or foundation models, data consumers should strongly consider requiring formal certification from providers that their systems contain no known compromised data, and exercise caution about models lacking assurances.",
+      "types": [
+        "3.2 · Data Governance"
+      ],
+      "pages": [
+        10
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Governance::Supply Chain Vulnerability",
+          "relation": "C",
+          "reason": "Strongly considering a formal cleanliness certificate supports safer third-party acceptance only if providers can substantiate the certificate and consumers use it in acceptance decisions. That assurance/verification step is explicit in the surrounding provider and acceptance guidance; requesting a certificate alone cannot remove compromised data."
+        }
+      ],
+      "type_reason": "A prospective provider-certification requirement before acquiring datasets/models is a data acquisition governance condition in 3.2. It does not constitute an external audit (3.1) or provider disclosure already performed (4.2).",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": ""
+    },
+    "ADS033": {
+      "actor": "Data consumers downloading curated web-scale datasets",
+      "object": "Downloaded items from curated web-scale datasets",
+      "force": "normative",
+      "scope": "single_control",
+      "level": "L4",
+      "exceptions": "",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "Consumers downloading curated web-scale datasets should check hashes at download to detect changes and discard data that fails the check.",
+      "types": [
+        "2.1 · Model & Infrastructure Security"
+      ],
+      "pages": [
+        11
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Technical::Security Vulnerabilities & Attacks::Data Poisoning",
+          "relation": "D",
+          "reason": "Consumers directly exclude changed downloaded content by discarding hash failures before use, constraining split-view poisoning of referenced datasets."
+        },
+        {
+          "target_id": "prototype-v0.9.3::Vector::Data Ingest::Data Poisoning",
+          "relation": "D",
+          "reason": "The download-time hash check discards changed items that fail verification, directly blocking that poisoned-data acquisition route into training use. The Data Ingest parent explicitly describes a pathway; its mitigation does not require redesigning the AI’s ingestion capability."
+        }
+      ],
+      "type_reason": "Hash verification with discard is an integrity/authentication admission safeguard under 2.1.",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": ""
+    },
+    "ADS063": {
+      "actor": "AI system developers and operators",
+      "object": "Operational AI models and their input/output data",
+      "force": "normative",
+      "scope": "single_control",
+      "level": "L4",
+      "exceptions": "Slow/gradual versus abrupt changes are likelihood indicators, not definitive diagnoses.",
+      "attribution": "Joint CSI authoring organizations",
+      "text": "Monitor model accuracy, performance, inputs and outputs and regularly check associated data for updates at intervals appropriate to the system and application. Use meaningful statistics to compare expected metrics and training-versus-test distributions. Gradual changes suggest drift while abrupt dramatic changes suggest compromise; in high-stakes applications continuous performance monitoring plus direct input analysis is important before impacts occur. The gradual/abrupt distinction is a likelihood indicator, not a definitive diagnosis.",
+      "types": [
+        "3.5 · Post-deployment Monitoring"
+      ],
+      "pages": [
+        4,
+        18,
+        19
+      ],
+      "links": [
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Technical::Lack of Robustness::Drift",
+          "relation": "O",
+          "reason": "Statistical comparisons of training/test distributions and operational inputs/performance assess distribution shift. Check intervals are application-dependent, with more continuous direct analysis in high-stakes cases."
+        },
+        {
+          "target_id": "prototype-v0.9.3::Challenges::Technical::Security Vulnerabilities & Attacks::Data Poisoning",
+          "relation": "O",
+          "reason": "Abrupt/dimensional changes in performance/input data are indicators used to distinguish possible poisoning from gradual drift. The source says more likely, so this is probabilistic observation rather than a definitive diagnosis or prevention."
+        },
+        {
+          "target_id": "prototype-v0.9.3::Cause::Malfunction::Failure::Poor Model Performance",
+          "relation": "O",
+          "reason": "Checking accuracy, performance and expected outputs directly assesses whether the model performs its intended task reliably, independent of whether a deviation is drift or malicious."
+        }
+      ],
+      "type_reason": "Continuous/regular monitoring of operational model performance and input/output distributions is post-deployment monitoring under 3.5.",
+      "no_link_reason": "",
+      "review": "Source and classification reviewed; no blocking questions.",
+      "human_review": ""
+    }
+  },
+  "updated": "2026-10-22",
+  "expert_feedback": {
+    "responses": 261,
+    "unit": "Response records; not a verified count of distinct experts.",
+    "classification_method": "Two independent AI coding passes followed by AI adjudication of disagreements and a coverage check.",
+    "multi_label_response_counts": {
+      "no_change": 137,
+      "refine": 97,
+      "unclear": 64,
+      "expand": 35,
+      "add": 21
+    },
+    "scope_limit": "These categories can overlap. AI interpretation of expert feedback is not independent human validation or evidence that all suggestions were adopted. Raw responses, identities, category definitions and unpublished taxonomy documents are not released here.",
+    "source_summary_sha256": "9412baf3aa75fc106006f3bc5c8eb508f6d76160f7c24c1aeede888e4501d926"
+  },
+  "current_explorer": {
+    "date": "2026-10-22",
+    "mitigations": 377,
+    "sources": 16,
+    "with_specific_risk_connections": 354,
+    "without_specific_risk_connections": 23,
+    "source_specific_connections_by_basis": {
+      "unreviewed": 538,
+      "inferred": 36,
+      "explicit": 8
+    },
+    "entry_count_scope": "377 action groups in this selected release; not a finalized whole-corpus count.",
+    "connection_count_scope": "Counts are source-specific connections, not mutually exclusive counts of actions. Earlier analysis has not yet been classified as explicit or inferred.",
+    "path": "../mitigation-pathway-explorer.html",
+    "sha256": "104a1f0560c494d0d4142c71c860fadc9962c7d323b6bd8647be05522f87f473"
+  },
+  "historical_explorer_records_note": "The seven records under explorer_records are the original pilot examples retained for continuity. The current explorer contains 377 actions and is summarized separately under current_explorer."
+}

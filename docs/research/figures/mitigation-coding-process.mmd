@@ -1,0 +1,39 @@
+flowchart TD
+    PREP["C · Prepare source and shared instructions"]
+    A["A · Independently extract controls"]
+    B["B · Independently extract controls"]
+    REC["C · Reconcile both extractions"]
+    BOUNDS["Same C · Justify control boundaries"]
+    REVIEW["D · Audit coverage, evidence and granularity"]
+    AMEND["Same C · Correct once"]
+    CHECK["Same D · Check corrections once"]
+    FREEZE["C · Freeze reviewed controls; preserve holds"]
+    PACKET["C · Supply identical controls, context and definitions"]
+    TA["Same A · Assign mitigation types"]
+    TB["Same B · Assign mitigation types"]
+    RA["Same A · Select supported risk targets"]
+    RB["Same B · Select supported risk targets"]
+    LA["Same A · Label relationships; cite evidence and rationale"]
+    LB["Same B · Label relationships; cite evidence and rationale"]
+    MREC["Same C · Reconcile types, targets, relationships and abstentions"]
+    MREV["Same D · Independently review all mapping decisions"]
+    MAMEND["Same C · Correct once"]
+    MCHECK["Same D · Check corrections once"]
+    DELIVERY["C · Deliver findings, tables, evidence and open questions"]
+    FLAG["Any agent, any stage · Flag issue with evidence"]
+    HOLD["C · Hold affected scope; continue unaffected work"]
+    HUMAN["Human · Decide unresolved question"]
+    UPDATE["C · Record decision and route scoped update and verification"]
+    PREP --> A & B
+    A & B --> REC --> BOUNDS --> REVIEW
+    REVIEW -->|Correction needed| AMEND --> CHECK --> FREEZE
+    REVIEW -->|Accepted scope proceeds; unresolved scope stays held| FREEZE
+    FREEZE --> PACKET --> TA & TB
+    TA --> RA --> LA
+    TB --> RB --> LB
+    LA & LB --> MREC --> MREV
+    MREV -->|Correction needed| MAMEND --> MCHECK --> DELIVERY
+    MREV -->|Accepted scope proceeds; unresolved scope stays held| DELIVERY
+    REVIEW -.-> FLAG
+    MREV -.-> FLAG
+    FLAG --> HOLD --> HUMAN --> UPDATE
